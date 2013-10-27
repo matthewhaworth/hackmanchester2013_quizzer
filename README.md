@@ -1,4 +1,4 @@
-hackmanchester2013_quizzer
-==========================
+sample-zend-doctrine-implementation
+===================================
 
-HackManchester2013 - Quizzer (RockTheCacheBar)
+Sample Zend Doctrine Implementation

@@ -1,0 +1,61 @@
+<div class="jumbotron">
+  <div id="details" class="container">
+	<h2><span class="brand">Quizzer</span> - My Details</h2>
+	<ul class="nav nav-justified logged-in-nav">
+	  <li><a href="/user">Home</a></li>
+	  <li><a href="/league/settings">League Settings</a></li>
+	  <li class="active"><a href="/user/details">My Details</a></li>
+	  <li><a href="/league/create">Create League</a></li>
+	  <li><a href="/user/statistics">My Statistics</a></li>
+	</ul>
+	<p>Edit Details</p>
+	<form class="form-horizontal" role="form" method="post" action="/user/update">
+	  <div class="form-group">
+		<label for="email" class="col-lg-3 control-label">Email</label>
+		<div class="col-lg-9">
+		  <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $this->user->getEmail()?>"/>
+                  
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="name" class="col-lg-3 control-label">Name</label>
+		<div class="col-lg-9">
+		  <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $this->user->getName()?>"/>
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="phone" class="col-lg-3 control-label">Phone Number</label>
+		<div class="col-lg-9">
+		  <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone"  value="<?php echo $this->user->getPhone()?>"/>
+		</div>
+	  </div>
+	  <div class="form-group">
+		<div class="col-lg-offset-3 col-lg-9">
+		  <button type="submit" class="btn btn-success">Update</button>
+		</div>
+	  </div>
+	</form>
+	<p>Change Password</p>
+	<form class="form-horizontal" role="form" method="post" action="/user/update">
+	  <div class="form-group">
+		<label for="password" class="col-lg-3 control-label">Password</label>
+		<div class="col-lg-9">
+		  <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="password1" class="col-lg-3 control-label">Repeat Password</label>
+		<div class="col-lg-9">
+		  <input type="password" class="form-control" id="password1" placeholder="Repeat Password" name="password1">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<div class="col-lg-offset-3 col-lg-9">
+		  <button type="submit" class="btn btn-success">Update</button>
+		</div>
+	  </div>
+	</form>
+        <?php if( $this->error ):?>
+            <p class="error"><?php echo  $this->error ?></p>
+        <?php endif;?>
+</div>

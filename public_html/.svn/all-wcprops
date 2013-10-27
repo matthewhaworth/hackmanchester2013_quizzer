@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/quizzer/!svn/ver/128/branches/development/public_html
+END
+.htaccess
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/quizzer/!svn/ver/10/branches/development/public_html/.htaccess
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/quizzer/!svn/ver/6/branches/development/public_html/index.php
+END
+favicon.ico
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/quizzer/!svn/ver/8/branches/development/public_html/favicon.ico
+END

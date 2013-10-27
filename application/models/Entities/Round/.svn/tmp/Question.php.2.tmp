@@ -1,0 +1,163 @@
+<?php
+/**
+ * @Entity @Table(name="round_question") @HasLifecycleCallbacks
+ */
+class Application_Model_Entities_Round_Question
+{
+    /** @Id @Column(type="integer") @GeneratedValue */
+    protected $id;
+
+    /**
+     * @OneToOne(targetEntity="Application_Model_Entities_Question")
+     * @JoinColumn(name="question_id", referencedColumnName="id")
+     **/
+    protected $question;
+    
+    /**
+     * @ManyToOne(targetEntity="Application_Model_Entities_User")
+     * @JoinColumn(name="winner_one_id", referencedColumnName="id")
+     **/
+    protected $winner_one;
+    
+    /**
+     * @ManyToOne(targetEntity="Application_Model_Entities_User")
+     * @JoinColumn(name="winner_two_id", referencedColumnName="id")
+     **/
+    protected $winner_two;
+    
+    /** @Column(type="datetime") */
+    protected $scheduled_time;
+    
+    /** @Column(type="datetime", nullable="true") */
+    protected $sent_time;
+    
+    /**
+     * @ManyToOne(targetEntity="Application_Model_Entities_Round", inversedBy="questions")
+     * @JoinColumn(name="round_id", referencedColumnName="id")
+     **/
+    protected $round;
+    
+    public function getId() {
+        return $this->id;
+    }
+    
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function getEntityManager()
+    {
+        return Zend_Registry::get('doctrine_em');
+    }
+    
+    public function getQuestion() {
+        if (is_null($this->question)) {
+            $query = $this->getEntityManager()->createQuery('SELECT COUNT(q.id) FROM Application_Model_Entities_Question q');
+            $count = $query->getSingleScalarResult();
+            
+            $question = $this->getEntityManager()->getRepository('Application_Model_Entities_Question')
+                ->createQueryBuilder('q')
+                ->setFirstResult(rand(0, $count - 1))
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+
+            $this->question = $question;
+        }
+        
+        return $this->question;
+    }
+
+    public function setQuestion($question) {
+        $this->question = $question;
+    }
+    
+    public function getWinnerOne() {
+        return $this->winner_one;
+    }
+
+    public function setWinnerOne($winner_one) {
+        $this->winner_one = $winner_one;
+    }
+
+    public function getWinnerTwo() {
+        return $this->winner_two;
+    }
+
+    public function setWinnerTwo($winner_two) {
+        $this->winner_two = $winner_two;
+    }
+
+    
+    public function getScheduledTime() {
+        return $this->scheduled_time;
+    }
+
+    public function setScheduledTime($scheduled_time) {
+        $this->scheduled_time = $scheduled_time;
+    }
+
+    public function getSentTime() {
+        return $this->sent_time;
+    }
+
+    public function setSentTime($sent_time) {
+        $this->sent_time = $sent_time;
+    }
+    /**
+     * 
+     * @return Application_Model_Entities_Round
+     */
+    public function getRound() {
+        return $this->round;
+    }
+
+    public function setRound($round) {
+        $this->round = $round;
+        return $this;
+    }
+    
+    public function send($sender) {
+        $round = $this->getRound();
+        $messages = array();
+        foreach($round->getLeague()->getUsers() as $_user) {
+            $messages[] = array(
+                'to' => $_user->getPhone(),
+                'message' => $this->getQuestion()->getQuestion(),
+            );
+        }
+        $sender->send($messages);
+        $this->setSentTime(new DateTime('now'));
+        $round->setCurrentQuestion($this);
+        return $this;
+    }
+    
+    public function end($sender) {
+        $round = $this->getRound();
+        $round->setCurrentQuestion(null);
+        
+        $messages = array();
+        foreach($round->getLeague()->getUsers() as $_user) {
+            $content = 'The correct answer to the last round was '.$this->getQuestion()->getAnswer().'. ';
+            if($this->getWinnerOne()) {
+                if($_user->getId() == $this->getWinnerOne()->getId()) {
+                   $content .= 'You won this round! Congratulations!'; 
+                } elseif($this->getWinnerTwo() && $this->getWinnerTwo()->getId() == $_user->getId()) {
+                    $content .= 'You got second place! The winner was ' . $this->getWinnerOne()->getName(); 
+                } else {
+                    $content .= 'You failed to get any points in this round. The winner was ' . $this->getWinnerOne()->getName(); 
+                }
+            } else {
+               $content .= 'No one answered the question correctly';
+            }
+            $messages[] = array(
+                'to' => $_user->getPhone(),
+                'message' => $content,
+            );
+        }
+      	if(count($messages)) {
+            $sender->send($messages);
+        }
+        return $this;
+    }
+
+}

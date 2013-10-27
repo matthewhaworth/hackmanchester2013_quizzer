@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/quizzer/!svn/ver/122/branches/development/application/models/Question/Adapter
+END
+Biketime.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/quizzer/!svn/ver/122/branches/development/application/models/Question/Adapter/Biketime.php
+END
+Distance.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/quizzer/!svn/ver/112/branches/development/application/models/Question/Adapter/Distance.php
+END
+Word.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/quizzer/!svn/ver/122/branches/development/application/models/Question/Adapter/Word.php
+END
+Manual.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/quizzer/!svn/ver/81/branches/development/application/models/Question/Adapter/Manual.php
+END
+Radio.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/quizzer/!svn/ver/122/branches/development/application/models/Question/Adapter/Radio.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/quizzer/!svn/ver/39/branches/development/application/models/Question/Adapter/Interface.php
+END
+Football.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/quizzer/!svn/ver/91/branches/development/application/models/Question/Adapter/Football.php
+END
+Abstract.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/quizzer/!svn/ver/79/branches/development/application/models/Question/Adapter/Abstract.php
+END

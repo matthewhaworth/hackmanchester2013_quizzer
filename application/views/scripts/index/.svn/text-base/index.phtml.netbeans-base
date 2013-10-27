@@ -1,0 +1,8 @@
+<div class="jumbotron">
+  <div class="container">
+	<h1>Quizzer</h1>
+	<p>The texting quiz game with ridiculous questions at ridiculous times!!!</p>
+	<p><a class="btn btn-primary btn-lg" href="/user/sign-up">Sign up here</a></p>
+	<p><a class="btn btn-primary btn-lg" href="/about">Learn More</a></p>
+  </div>
+</div>

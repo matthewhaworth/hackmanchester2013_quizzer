@@ -1,0 +1,11 @@
+<div class="jumbotron">
+  <div id="about" class="container">
+	<h2><span class="brand">Quizzer</span> - About</h2>
+	<p>Quizzer is a text based quiz to play with your friends.</p>
+        <p>There are two types of questions - answer the fastest and answer the nearest.</p>
+	<p>Answer the nearest will award points for the closest answer.</p>
+	<p>Answer for fastest will be a multiple choice question and points will be given for 1st and 2nd fastest.</p>
+	<p>Questions can come at any time any day - so be ready!</p>
+	<p>View the league table online as well as your statistics</p>
+	<p><a class="btn btn-primary btn-lg" href="/user/sign-up">Sign up here</a></p>
+</div>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/quizzer/!svn/ver/6/branches/development/scripts/doctrine
+END
+cli-config.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/quizzer/!svn/ver/6/branches/development/scripts/doctrine/cli-config.php
+END
+doctrine
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/quizzer/!svn/ver/6/branches/development/scripts/doctrine/doctrine
+END
+doctrine.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/quizzer/!svn/ver/6/branches/development/scripts/doctrine/doctrine.php
+END
+classpath_loader.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/quizzer/!svn/ver/6/branches/development/scripts/doctrine/classpath_loader.php
+END

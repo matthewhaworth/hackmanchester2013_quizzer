@@ -1,0 +1,72 @@
+<?php
+
+class TestController extends Quizzer_Controller_Abstract {
+
+    public function createQueueItem($user, $question = null) 
+    {
+        $item = new Application_Model_Entities_Answer_Queue_Item();
+        $item->setUser($user);
+        $item->setMessage('Matt');
+        $item->setQuestion($question);
+        
+        $this->_getEntityManager()->persist($item);
+        $this->_getEntityManager()->flush();
+    }
+
+    public function testAction() {
+        $em = $this->_getEntityManager();
+
+//        $user = $em->find('Application_Model_Entities_User',2);
+//        
+//        $this->createQueueItem($user);
+//        die;
+//            
+//            $rep = $em->getRepository('Application_Model_Entities_Question_Manual');
+//            $question = $rep->popQuestion();
+//            var_dump($question);
+//            die('test');
+        $users = $em->getRepository('Application_Model_Entities_User')->findById(2);
+
+        $query = $em->createQueryBuilder()
+                ->select('aqi')
+                ->from('Application_Model_Entities_Answer_Queue_Item', 'aqi')
+                ->where('aqi.user IN (:users)')
+                ->setParameter('users', $users);
+
+        $queueItems = $query->getQuery()->getResult();
+
+        foreach ($queueItems as $item) {
+            var_dump($item->getMessage());
+        }
+       
+
+        die('end');
+    }
+
+    public function addAction() {
+        $question = new Application_Model_Entities_Question_Manual();
+        $question->setQuestion('THis is a test 2?');
+        $question->setAnswer('B');
+        $question->setType('M');
+        $em = $this->_getEntityManager();
+        $em->persist($question);
+        $em->flush();
+        die('end');
+    }
+    
+    public function addroundquesAction() {
+        $question = new Application_Model_Entities_Round_Question();
+        $q = $this->_getEntityManager()->find('Application_Model_Entities_Question', 1);
+        $question->setQuestion($q);
+        $r = $this->_getEntityManager()->find('Application_Model_Entities_Round', 1);
+        $question->setRound($r);
+        $question->setScheduledTime(new DateTime('now'));
+        $question->setSentTime(new DateTime('now'));
+        
+        $this->_getEntityManager()->persist($question);
+        $this->_getEntityManager()->flush();
+        die('end');
+        
+    }
+
+}

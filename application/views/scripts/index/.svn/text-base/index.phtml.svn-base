@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <div class="quizzer">
+  <img src="../../../images/logo.png" alt="Quizzer" class="left"/>
+  <div class="home container">
+      <h1>uizzer</h1>
+  </div>
+  <div class="home-content">
+  <p>The texting quiz game with ridiculous questions at ridiculous times!!!</p>
+    <!--<p><a class="btn btn-primary btn-lg" href="/user/sign-up">Sign up here</a></p>
+    <p><a class="btn btn-primary btn-lg" href="/about">Learn More</a></p>-->
+    <a class="btn btn-primary btn-lg" href="/user/sign-up">Sign up here</a>
+    <a class="btn btn-primary btn-lg" href="/about">Learn More</a>
+  </div>
+  </div>
+</div>

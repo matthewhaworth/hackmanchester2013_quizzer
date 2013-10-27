@@ -1,0 +1,50 @@
+<div class="jumbotron">
+  <div id="details" class="container">
+	<h2><span class="brand">Quizzer</span> - League Settings</h2>
+	<ul class="nav nav-justified logged-in-nav">
+	  <li><a href="/user">Home</a></li>
+	  <li class="active"><a href="/league/settings">League Settings</a></li>
+	  <li><a href="/user/details">My Details</a></li>
+	  <li><a href="/league/create">Create League</a></li>
+	  <li><a href="/user/statistics">My Statistics</a></li>
+	</ul>
+	<p>League Settings</p>
+        <?php if($this->user->getLeague()):?>
+	<form class="form-horizontal" role="form" method="post" action="/league/update">
+            <div class="form-group">
+                <label for="code" class="col-lg-3 control-label">Code</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="code" 
+                            value="<?php echo $this->user->getLeague()->getCode()?>" disabled/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-lg-3 control-label">Name</label>
+                <div class="col-lg-9">
+                  <input type="text" class="form-control" id="name" placeholder="Name" name="name"
+                            value="<?php echo $this->user->getLeague()->getName()?>"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="start-date" class="col-lg-3 control-label">Start Date</label>
+                <div class="col-lg-9">
+                  <input type="date" class="form-control" id="start-date" placeholder="Start Date" name="start-date"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="start-time" class="col-lg-3 control-label">Start Time</label>
+                <div class="col-lg-9">
+                  <input type="time" class="form-control" id="start-time" placeholder="Start Time" name="start-time"/>
+                </div>
+            </div>
+            <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-9">
+                    <button type="submit" class="btn btn-success">Update</button>
+                  </div>
+            </div>
+	</form>
+        <?php else:?>
+            <p>You are not part of a league yet</p>
+        <?php endif;?>
+  </div>
+</div>

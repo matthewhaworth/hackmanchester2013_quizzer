@@ -1,0 +1,115 @@
+<div class="jumbotron">
+  <div id="home" class="container">
+	<h2><span class="brand">Quizzer</span> - Home</h2>
+	<ul class="nav nav-justified logged-in-nav">
+	  <li class="active"><a href="/user">Home</a></li>
+	  <li><a href="/league/settings">League Settings</a></li>
+	  <li><a href="/user/details">My Details</a></li>
+	  <li><a href="/league/create">Create League</a></li>
+	  <li><a href="/user/statistics">My Statistics</a></li>
+	</ul>
+        <?php $league = $this->user->getLeague();
+            if( $league ):?>
+            <p>My league - Code: 
+                 <span class="code">
+                     <?php echo $this->user->getLeague()->getCode()?>
+                 </span>
+                Name:
+                <span class="code">
+                     <?php echo $this->user->getLeague()->getName()?>
+                 </span>
+            </p>
+            <table class="table table-hover">
+                    <thead>
+                            <tr>
+                                    <th>Position</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Points</th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        $prevScore = '';
+                        $counter = 0;
+                        $prevPosition= 1;
+                        foreach($this->userScores as $k => $score )
+                       { 
+                            $counter = $counter + 1;
+                            ?>
+                            <tr>
+                                    <?php if($prevScore == $score):?>
+                                        <td><?php echo $prevPosition ?></td>
+                                    <?php else:?>
+                                        <td><?php echo $counter ?></td>
+                                    <?php 
+                                        $prevPosition = $counter;
+                                    endif;?>
+                                    <td><a href="/user/statistics?id=<?php echo $this->leagueUsers[$k]->getId()?>"><?php echo $this->leagueUsers[$k]->getName() ?></a></td>
+                                    <td><?php echo $this->leagueUsers[$k]->getEmail() ?></td>
+                                    <td><?php echo (string)$score ?></td>
+                            </tr>
+                        <?php 
+                        $prevScore = $score;
+                       }?>
+                            <!--<tr>
+                                    <td>2</td>
+                                    <td><a href="/user?id=...">Chris</a></td>
+                                    <td>christopheratty@gmail.com</td>
+                                    <td>5</td>
+                            </tr>
+                            <tr>
+                                    <td>3</td>
+                                    <td><a href="/user?id=...">Matt</a></td>
+                                    <td>matthewhaworth@gmail.com</td>
+                                    <td>2</td>
+                            </tr>-->
+                    </tbody>
+            </table>
+            <div class="new-league">
+                    <p>Leave and join a different league:</p>
+                    <form method="post" action="/user/join">
+                            <p>
+                                    <span>Enter league code</span>
+                                    <input type="text" name="code"/>
+                                    <button type="submit" class="btn btn-success">Join</button>
+                            </p>
+                    </form>
+                </p>
+            </div>
+        <?php else:?>
+            <div class="new-league">
+                <p>Join a league</p>
+                    <form method="post" action="/user/join">
+                            <p>
+                                <span>Enter code</span>
+                                <input type="text" name="code"/>
+                                <button type="submit" class="btn btn-success">Join</button>
+                            </p>
+                    </form>
+                </p>
+            </div>
+        <?php endif;?>
+        <?php 
+            $code = '';
+            $league = $this->user->getLeague();
+            if( $league )
+            {
+                $code = $league->getCode();
+            }
+            if( $code != '7af14' ):?>
+            <div class="new-league">
+                <form method="post" action="/user/join">
+                        <p>
+                            <span>Join the Hack Manchester League</span>
+                            <input type="hidden" name="code" value="7af14"/>
+                            <button type="submit" class="btn btn-success">Join</button>
+                        </p>
+                </form>
+            </div>
+        <?php endif;?>
+        <?php if( $this->error ):?>
+            <p class="error"><?php echo $this->error ?></p>
+        <?php endif;?>
+  </div>
+</div>

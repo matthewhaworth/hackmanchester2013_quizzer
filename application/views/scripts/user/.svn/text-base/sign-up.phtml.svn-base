@@ -1,0 +1,15 @@
+<div id="signup">
+	<form class="form-signin" method="post" action="/user/sign-up-post">
+		<h2 class="form-signin-heading">Sign up here</h2>
+		<input type="text" class="form-control first" placeholder="Email address" autofocus="" name="email"/>
+		<input type="text" class="form-control" placeholder="Your name" name="name"/>
+		<input type="text" class="form-control" placeholder="Phone Number*" name="phone"/>
+		<input type="password" class="form-control last" placeholder="Password" name="password"/>
+		<label class="checkbox">
+		  <input type="checkbox" value="true" name="terms"/> I Accept the Terms and Conditions
+		</label>
+                <input type="hidden" name="signup" value="1"/>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                <p style="padding: 20px 0;">*Please include the country code on your phone number</p>
+	</form>
+</div>

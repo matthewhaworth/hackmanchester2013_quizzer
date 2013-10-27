@@ -1,0 +1,45 @@
+<div class="jumbotron">
+  <div id="details" class="container">
+	<h2><span class="brand">Quizzer</span> - My Details</h2>
+	<ul class="nav nav-justified logged-in-nav">
+	  <li><a href="/user">Home</a></li>
+	  <li><a href="/league/settings">League Settings</a></li>
+	  <li><a href="/user/details">My Details</a></li>
+	  <li class="active"><a href="/league/create">Create League</a></li>
+	  <li><a href="/user/statistics">My Statistics</a></li>
+	</ul>
+	<p>League Settings</p>
+	<form class="form-horizontal" role="form" method="post">
+	  <div class="form-group">
+		<label for="name" class="col-lg-3 control-label">Name</label>
+		<div class="col-lg-9">
+		  <input type="text" class="form-control" id="name" placeholder="Name" name="name">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="start-date" class="col-lg-3 control-label">Start Date</label>
+		<div class="col-lg-9">
+		  <input type="date" class="form-control" id="start-date" placeholder="Start Date" name="start-date">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<label for="start-time" class="col-lg-3 control-label">Start Time</label>
+		<div class="col-lg-9">
+		  <input type="time" class="form-control" id="start-time" placeholder="Start Time" name="start-time">
+		</div>
+	  </div>
+	  <div class="form-group">
+		<div class="col-lg-offset-3 col-lg-9">
+		  <button type="submit" class="btn btn-success">Generate League Code *</button>
+		</div>
+	  </div>
+	</form>
+        <?php if( $this->league ) :?>
+        <p>League Code Generated: <span class="brand"><?php echo $this->league->getCode()?></span></p>
+        <?php endif;?>
+        <p>*By creating a league you will automatically leave any others you are in and be assigned to the new league</p>
+        <?php if( $this->error ) :?>
+            <p class="error"><?php echo $this->error ?></span></p>
+        <?php endif;?>
+  </div>
+</div>
